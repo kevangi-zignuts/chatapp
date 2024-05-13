@@ -13,6 +13,8 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
+
 window.Echo.private('chat-channel.' + receiverId).listen("MessageEvent", (event) => {
     console.log(event);
 });
+

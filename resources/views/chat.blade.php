@@ -245,7 +245,11 @@
                                 </div>
                             </li> --}}
                         @endforeach
+<<<<<<< HEAD
                         <form id="sendMessageForm" method="POST">
+=======
+                        <form action="{{ route('send-message') }}" id="sendMessageForm" method="POST">
+>>>>>>> e54fcfcb11892ea9223b55a11407519dc2c00d8c
                             @csrf
 
                             <li class="mb-3">
@@ -271,6 +275,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
+<<<<<<< HEAD
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
@@ -310,6 +315,36 @@
         });
     </script>
 
+=======
+    <script>
+        document.getElementById("sendMessageForm").addEventListener("submit", function(event) {
+            console.log('here');
+            event.preventDefault(); // Prevent default form submission
+
+            var formData = new FormData(this); // Serialize form data
+            var xhr = new XMLHttpRequest();
+
+            xhr.open("POST", "/message", true);
+            xhr.setRequestHeader('X-CSRF-TOKEN',
+                '{{ csrf_token() }}'); // Add CSRF token if using Laravel CSRF protection
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        // Handle success response
+                        console.log(response);
+                    } else {
+                        // Handle error response
+                        console.error('Error:', xhr.statusText);
+                    }
+                }
+            };
+
+            xhr.send(formData); // Send form data
+        });
+    </script>
+>>>>>>> e54fcfcb11892ea9223b55a11407519dc2c00d8c
 </body>
 
 </html>

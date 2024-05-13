@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\User;
 use App\Models\Message;
 use App\Events\MessageSend;
+=======
+use App\Events\MessageEvent;
+use App\Models\User;
+use App\Models\Message;
+>>>>>>> e54fcfcb11892ea9223b55a11407519dc2c00d8c
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -46,9 +52,14 @@ class MessageController extends Controller
             'receiver_id' => $request->input('receiver_id'),
         ]);
         $this->appendChatMessage($message);
+<<<<<<< HEAD
         broadcast(new MessageSend($message))->toOthers();
         // MessageSend::dispatch($message);
         
+=======
+        broadcast(new MessageEvent($message))->toOthers();
+
+>>>>>>> e54fcfcb11892ea9223b55a11407519dc2c00d8c
         return response()->json(['message' => 'Form submitted successfully']);
     }
 
